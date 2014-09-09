@@ -2,7 +2,7 @@
 require 'nokogiri'
 
 # Fix relative with absolute routes
-my_heraldo = File.open('heraldo_origin.html').read
+my_heraldo = File.open('./hacked-heraldo/heraldo-origin.html').read
 my_heraldo = my_heraldo.gsub("src=\"/","src=\"http://www.heraldo.es/")
 my_heraldo = my_heraldo.gsub("href=\"/","href=\"http://www.heraldo.es/")
 # videos
@@ -20,8 +20,8 @@ author = my_noked_heraldo.xpath('//div/div/p/span')[0].text
 subtext = my_noked_heraldo.xpath('//div/div/div/div/div/div/div')[0].text
 
 # sometimes there is an image
-image_to_change = my_noked_heraldo.xpath('//div/div/a/img/@src')[0]
-alt_image_to_change = my_noked_heraldo.xpath('//div/div/a/img/@alt')[0]
+image_to_change = my_noked_heraldo.xpath('//img/@data-original')[0]
+#alt_image_to_change = my_noked_heraldo.xpath('//div/div/a/img/@alt')[0]
 
 # Switch with my own data
 my_heraldo = my_heraldo.gsub(title_to_change,"Sesión de web scraping este jueves en #zaragozarb")
@@ -31,10 +31,10 @@ my_heraldo = my_heraldo.gsub(author,"Efe. Zaragoza")
 my_heraldo = my_heraldo.gsub(subtext,"Esta tarde se explicará el uso de la gema Nokogiri, en La Jamonería")
 # Image
 my_heraldo = my_heraldo.gsub(image_to_change,"http://photos4.meetupstatic.com/photos/event/4/9/5/e/600_226578782.jpeg")
-my_heraldo = my_heraldo.gsub(alt_image_to_change,"Sesión de web scraping este jueves en #zaragozarb")
+#my_heraldo = my_heraldo.gsub(alt_image_to_change,"Sesión de web scraping este jueves en #zaragozarb")
 
 # Rewrite with changes in another file
-File.open("heraldo_new.html", "w") { |io|
+File.open("./hacked-heraldo/heraldo-new.html", "w") { |io|
 	io.write(my_heraldo)
 }
 
