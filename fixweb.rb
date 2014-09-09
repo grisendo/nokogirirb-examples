@@ -2,7 +2,7 @@
 require 'nokogiri'
 
 # Fix relative with absolute routes
-my_heraldo = File.open('./hacked-heraldo/heraldo-origin.html').read
+my_heraldo = File.open('heraldo-origin.html').read
 my_heraldo = my_heraldo.gsub("src=\"/","src=\"http://www.heraldo.es/")
 my_heraldo = my_heraldo.gsub("href=\"/","href=\"http://www.heraldo.es/")
 # videos
@@ -34,7 +34,7 @@ my_heraldo = my_heraldo.gsub(image_to_change,"http://photos4.meetupstatic.com/ph
 #my_heraldo = my_heraldo.gsub(alt_image_to_change,"Sesión de web scraping este jueves en #zaragozarb")
 
 # Rewrite with changes in another file
-File.open("./hacked-heraldo/heraldo-new.html", "w") { |io|
+File.open("heraldo-new.html", "w") { |io|
 	io.write(my_heraldo)
 }
 
