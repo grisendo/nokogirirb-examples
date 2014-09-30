@@ -13,7 +13,7 @@ my_heraldo = my_heraldo.gsub("\"/MODULOS","\"http://www.heraldo.es/MODULOS")
 
 # Get data from first new
 my_noked_heraldo = Nokogiri::HTML(my_heraldo)
-title_to_change = my_noked_heraldo.xpath('//h2/a')[0].text
+#title_to_change = my_noked_heraldo.xpath('//h2/a')[0].text
 link_to_change = my_noked_heraldo.xpath('//h2/a/@href')[0]
 pre_title = my_noked_heraldo.xpath('//div/div/div/div/div/strong')[0].text
 author = my_noked_heraldo.xpath('//div/div/p/span')[0].text
@@ -21,6 +21,7 @@ subtext = my_noked_heraldo.xpath('//div/div/div/div/div/div/div')[0].text
 
 # sometimes there is an image
 image_to_change = my_noked_heraldo.xpath('//img/@data-original')[0]
+title_to_change = my_noked_heraldo.xpath('//img[@data-original]/../../../h2/a')[0]
 #alt_image_to_change = my_noked_heraldo.xpath('//div/div/a/img/@alt')[0]
 
 # Switch with my own data
@@ -40,5 +41,5 @@ File.open("heraldo-final.html", "w") { |io|
 
 # puts pre_title
 # puts subtext
-# puts title_to_change
+puts title_to_change
 # puts image_to_change
