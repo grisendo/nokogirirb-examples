@@ -20,9 +20,13 @@ author = my_noked_heraldo.xpath('//div/div/p/span')[0].text
 subtext = my_noked_heraldo.xpath('//div/div/div/div/div/div/div')[0].text
 
 # sometimes there is an image
-image_to_change = my_noked_heraldo.xpath('//img/@data-original')[0]
+image_to_change = my_noked_heraldo.xpath('//img[@data-original]')[0]
 title_to_change = my_noked_heraldo.xpath('//img[@data-original]/../../../h2/a')[0]
 #alt_image_to_change = my_noked_heraldo.xpath('//div/div/a/img/@alt')[0]
+
+# Policy
+policy_to_change = my_noked_heraldo.xpath('//div[@id="pie"]//p')[2]
+
 
 # Switch with my own data
 my_heraldo = my_heraldo.gsub(title_to_change,"Sesión de web scraping este jueves en #zaragozarb")
@@ -30,9 +34,16 @@ my_heraldo = my_heraldo.gsub(link_to_change,"http://www.meetup.com/Zaragoza-Ruby
 my_heraldo = my_heraldo.gsub(pre_title,"Evento de programación en Zaragoza")
 my_heraldo = my_heraldo.gsub(author,"Efe. Zaragoza")
 my_heraldo = my_heraldo.gsub(subtext,"Esta tarde se explicará el uso de la gema Nokogiri, en La Jamonería")
+
 # Image
-my_heraldo = my_heraldo.gsub(image_to_change,"http://photos4.meetupstatic.com/photos/event/4/9/5/e/600_226578782.jpeg")
+my_heraldo = my_heraldo.gsub(image_to_change['data-original'],"http://photos4.meetupstatic.com/photos/event/4/9/5/e/600_226578782.jpeg")
 #my_heraldo = my_heraldo.gsub(alt_image_to_change,"Sesión de web scraping este jueves en #zaragozarb")
+
+# Policy
+my_heraldo = my_heraldo.gsub(policy_to_change,policy_to_change.to_s + "<p>Extraído de Heraldo de Aragón (2014).
+	Esta página ha sido replicada con fines docentes a los efectos del artículo 32.1, párrafo primero, de la Ley de Propiedad Intelectual. 
+	Recuperado en octubre de 2014 de <a href=\"http://www.heraldo.es\" style=\"color:#f9ffff\">www.heraldo.es</a></p>")
+# my_heraldo = my_heraldo.gsub(subtext,"Esta tarde se explicará el uso de la gema Nokogiri, en La Jamonería")
 
 # Rewrite with changes in another file
 File.open("heraldo-final.html", "w") { |io|
@@ -41,5 +52,7 @@ File.open("heraldo-final.html", "w") { |io|
 
 # puts pre_title
 # puts subtext
-puts title_to_change
-# puts image_to_change
+# puts title_to_change
+puts image_to_change['data-original'].to_s
+
+# puts policy_to_change.to_s.length
