@@ -13,7 +13,7 @@ my_heraldo = my_heraldo.gsub("\"/MODULOS","\"http://www.heraldo.es/MODULOS")
 
 # Get data from first new
 my_noked_heraldo = Nokogiri::HTML(my_heraldo)
-#title_to_change = my_noked_heraldo.xpath('//h2/a')[0].text
+title_to_change = my_noked_heraldo.xpath('//h2/a')[0].text
 link_to_change = my_noked_heraldo.xpath('//h2/a/@href')[0]
 pre_title = my_noked_heraldo.xpath('//div/div/div/div/div/strong')[0].text
 author = my_noked_heraldo.xpath('//div/div/p/span')[0].text
@@ -21,7 +21,8 @@ subtext = my_noked_heraldo.xpath('//div/div/div/div/div/div/div')[0].text
 
 # sometimes there is an image
 image_to_change = my_noked_heraldo.xpath('//img[@data-original]')[0]
-title_to_change = my_noked_heraldo.xpath('//img[@data-original]/../../../h2/a')[0]
+link_image = my_noked_heraldo.xpath('//img[@data-original]/..')[0]
+#title_to_change = my_noked_heraldo.xpath('//img[@data-original]/../../../h2/a')[0]
 #alt_image_to_change = my_noked_heraldo.xpath('//div/div/a/img/@alt')[0]
 
 # Policy
@@ -30,13 +31,14 @@ policy_to_change = my_noked_heraldo.xpath('//div[@id="pie"]//p')[2]
 
 # Switch with my own data
 my_heraldo = my_heraldo.gsub(title_to_change,"Sesión de web scraping este jueves en #zaragozarb")
-my_heraldo = my_heraldo.gsub(link_to_change,"http://www.meetup.com/Zaragoza-Ruby-Jam-Sessions/")
+my_heraldo = my_heraldo.gsub(link_to_change,"http://www.meetup.com/Zaragoza-Ruby-Jam-Sessions/events/215246072/")
 my_heraldo = my_heraldo.gsub(pre_title,"Evento de programación en Zaragoza")
 my_heraldo = my_heraldo.gsub(author,"Efe. Zaragoza")
 my_heraldo = my_heraldo.gsub(subtext,"Esta tarde se explicará el uso de la gema Nokogiri, en La Jamonería")
 
 # Image
 my_heraldo = my_heraldo.gsub(image_to_change['data-original'],"http://photos4.meetupstatic.com/photos/event/4/9/5/e/600_226578782.jpeg")
+my_heraldo = my_heraldo.gsub(link_image['href'],"http://www.meetup.com/Zaragoza-Ruby-Jam-Sessions/events/215246072/")
 #my_heraldo = my_heraldo.gsub(alt_image_to_change,"Sesión de web scraping este jueves en #zaragozarb")
 
 # Policy
