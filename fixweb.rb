@@ -30,11 +30,11 @@ policy_to_change = my_noked_heraldo.xpath('//div[@id="pie"]//p')[2]
 
 
 # Switch with my own data
-my_heraldo = my_heraldo.gsub(title_to_change,"Sesión de web scraping este jueves en #zaragozarb")
+my_heraldo = my_heraldo.gsub(title_to_change,"Sesi&oacute;n de web scraping este jueves en #zaragozarb")
 my_heraldo = my_heraldo.gsub(link_to_change,"http://www.meetup.com/Zaragoza-Ruby-Jam-Sessions/events/215246072/")
-my_heraldo = my_heraldo.gsub(pre_title,"Evento de programación en Zaragoza")
+my_heraldo = my_heraldo.gsub(pre_title,"Evento de programaci&oacute;n en Zaragoza")
 my_heraldo = my_heraldo.gsub(author,"Efe. Zaragoza")
-my_heraldo = my_heraldo.gsub(subtext,"Esta tarde se explicará el uso de la gema Nokogiri, en La Jamonería")
+my_heraldo = my_heraldo.gsub(subtext,"Esta tarde se explicar&aacute; el uso de la gema Nokogiri, en La Jamoner&iacute;a")
 
 # Image
 my_heraldo = my_heraldo.gsub(image_to_change['data-original'],"http://photos4.meetupstatic.com/photos/event/4/9/5/e/600_226578782.jpeg")
@@ -42,8 +42,8 @@ my_heraldo = my_heraldo.gsub(link_image['href'],"http://www.meetup.com/Zaragoza-
 #my_heraldo = my_heraldo.gsub(alt_image_to_change,"Sesión de web scraping este jueves en #zaragozarb")
 
 # Policy
-my_heraldo = my_heraldo.gsub(policy_to_change,policy_to_change.to_s + "<p>Extraído de Heraldo de Aragón (2014).
-	Esta página ha sido replicada con fines docentes a los efectos del artículo 32.1, párrafo primero, de la Ley de Propiedad Intelectual. 
+my_heraldo = my_heraldo.gsub(policy_to_change,policy_to_change.to_s + "<p>Extra&iacute;do de Heraldo de Arag&oacute;n (2014).
+	Esta p&aacute;gina ha sido replicada con fines docentes a los efectos del art&iacute;culo 32.1, p&aacute;rrafo primero, de la Ley de Propiedad Intelectual. 
 	Recuperado en octubre de 2014 de <a href=\"http://www.heraldo.es\" style=\"color:#f9ffff\">www.heraldo.es</a></p>")
 # my_heraldo = my_heraldo.gsub(subtext,"Esta tarde se explicará el uso de la gema Nokogiri, en La Jamonería")
 
