@@ -13,15 +13,16 @@ my_heraldo = my_heraldo.gsub("\"/MODULOS","\"http://www.heraldo.es/MODULOS")
 
 # Get data from first new
 my_noked_heraldo = Nokogiri::HTML(my_heraldo)
-title_to_change = my_noked_heraldo.xpath('//h2/a')[0].text
-link_to_change = my_noked_heraldo.xpath('//h2/a/@href')[0]
-pre_title = my_noked_heraldo.xpath('//div/div/div/div/div/strong')[0].text
-author = my_noked_heraldo.xpath('//div/div/p/span')[0].text
-subtext = my_noked_heraldo.xpath('//div/div/div/div/div/div/div')[0].text
+first_article = my_noked_heraldo.xpath('//div[starts-with(@id, "Noticia")]')[0]
+title_to_change = first_article.xpath('.//h2/a')[0].text
+link_to_change = my_noked_heraldo.xpath('.//h2/a/@href')[0]
+pre_title = first_article.xpath('.//strong')[0].text
+author = first_article.xpath('.//p/span')[0].text
+subtext = first_article.xpath('.//div')[0].text
 
 # sometimes there is an image
-image_to_change = my_noked_heraldo.xpath('//img[@data-original]')[0]
-link_image = my_noked_heraldo.xpath('//img[@data-original]/..')[0]
+image_to_change = my_noked_heraldo.xpath('.//img[@data-original]')[0]
+link_image = my_noked_heraldo.xpath('.//img[@data-original]/..')[0]
 #title_to_change = my_noked_heraldo.xpath('//img[@data-original]/../../../h2/a')[0]
 #alt_image_to_change = my_noked_heraldo.xpath('//div/div/a/img/@alt')[0]
 
@@ -37,7 +38,7 @@ my_heraldo = my_heraldo.gsub(author,"Efe. Zaragoza")
 my_heraldo = my_heraldo.gsub(subtext,"Esta tarde se explicar&aacute; el uso de la gema Nokogiri, en La Jamoner&iacute;a")
 
 # Image
-my_heraldo = my_heraldo.gsub(image_to_change['data-original'],"http://photos4.meetupstatic.com/photos/event/4/9/5/e/600_226578782.jpeg")
+my_heraldo = my_heraldo.gsub(image_to_change['src'],"http://photos4.meetupstatic.com/photos/event/4/9/5/e/600_226578782.jpeg")
 my_heraldo = my_heraldo.gsub(link_image['href'],"http://www.meetup.com/Zaragoza-Ruby-Jam-Sessions/events/215246072/")
 #my_heraldo = my_heraldo.gsub(alt_image_to_change,"Sesión de web scraping este jueves en #zaragozarb")
 
